@@ -16,3 +16,4 @@ submissions/
 *.out
 *.zip
 *.tiff
+.DS_Store
