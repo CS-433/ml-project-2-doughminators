@@ -15,7 +15,6 @@ submissions/
 *.json
 *.out
 *.zip
+*.tif
 *.tiff
 .DS_Store
-.tif
-.tiff
