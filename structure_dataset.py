@@ -16,6 +16,6 @@ if __name__ == "__main__":
                 new_f = f.replace("_im", "")
                 shutil.copyfile(os.path.join(dir[0], f), os.path.join(img_dest_dir, new_f))
             elif f[-8:] == "mask.tif":
-                new_f = f.replace("_mask", ".label")
+                new_f = f.replace("_mask", "_label")
                 new_f = f.replace("tif", "tiff")
                 shutil.copyfile(os.path.join(dir[0], f), os.path.join(label_dest_dir, new_f))
