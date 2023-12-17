@@ -76,7 +76,9 @@ def evaluate_f1_score_cellseg(masks_true, masks_pred, threshold=0.5):
     # Calculate f1 score
     precision, recall, f1_score = evaluate_f1_score(tp, fp, fn)
 
-    return precision, recall, f1_score
+    ap_score = tp / (tp + fn + fp)
+
+    return precision, recall, f1_score, ap_score
 
 
 def evaluate_f1_score(tp, fp, fn):

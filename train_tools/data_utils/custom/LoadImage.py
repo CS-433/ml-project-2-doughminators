@@ -138,7 +138,7 @@ class UnifiedITKReader(NumpyReader):
             name = f"{name}"
 
             if name.endswith(".tif") or name.endswith(".tiff"):
-                _obj = tif.imread(name)
+                _obj = tif.imread(name).squeeze()
             else:
                 try:
                     _obj = itk.imread(name, **kwargs_)

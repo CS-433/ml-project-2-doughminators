@@ -43,25 +43,26 @@ class BasePredictor:
         total_times = []
 
         for img_name in self.img_names:
-            img_data = self._get_img_data(img_name)
-            img_data = img_data.to(self.device)
+            if img_name != '.DS_Store':
+                img_data = self._get_img_data(img_name)
+                img_data = img_data.to(self.device)
 
-            start = time.time()
+                start = time.time()
 
-            pred_mask = self._inference(img_data)
-            pred_mask = self._post_process(pred_mask.squeeze(0).cpu().numpy())
-            self.write_pred_mask(
-                pred_mask, self.output_path, img_name, self.make_submission
-            )
+                pred_mask = self._inference(img_data)
+                pred_mask = self._post_process(pred_mask.squeeze(0).cpu().numpy())
+                self.write_pred_mask(
+                    pred_mask, self.output_path, img_name, self.make_submission
+                )
 
-            end = time.time()
+                end = time.time()
 
-            time_cost = end - start
-            total_times.append(time_cost)
-            total_time += time_cost
-            print(
-                f"Prediction finished: {img_name}; img size = {img_data.shape}; costing: {time_cost:.2f}s"
-            )
+                time_cost = end - start
+                total_times.append(time_cost)
+                total_time += time_cost
+                print(
+                    f"Prediction finished: {img_name}; img size = {img_data.shape}; costing: {time_cost:.2f}s"
+                )
 
         print(f"\n Total Time Cost: {total_time:.2f}s")
 

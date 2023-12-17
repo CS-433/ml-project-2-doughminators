@@ -31,24 +31,27 @@ def main():
     names = sorted(os.listdir(pred_path))
 
     names_total = []
-    precisions_total, recalls_total, f1_scores_total = [], [], []
+    precisions_total, recalls_total, f1_scores_total, ap_scores_total = [], [], [], []
 
     for name in tqdm(names):
+        if name == ".DS_Store":
+            continue
         assert name.endswith(
             "_label.tiff"
-        ), "The suffix of label name should be _label.tiff"
+        ), f"The suffix of label name {name} should be _label.tiff"
 
         # Load the images
         gt = tif.imread(os.path.join(gt_path, name))
         pred = tif.imread(os.path.join(pred_path, name))
 
         # Evaluate metrics
-        precision, recall, f1_score = evaluate_f1_score_cellseg(gt, pred, threshold=0.5)
+        precision, recall, f1_score, ap_score = evaluate_f1_score_cellseg(gt, pred, threshold=0.5)
 
         names_total.append(name)
         precisions_total.append(np.round(precision, 4))
         recalls_total.append(np.round(recall, 4))
         f1_scores_total.append(np.round(f1_score, 4))
+        ap_scores_total.append(np.round(ap_score, 4))
 
     # Refine data as dataframe
     cellseg_metric = OrderedDict()
@@ -56,9 +59,12 @@ def main():
     cellseg_metric["Precision"] = precisions_total
     cellseg_metric["Recall"] = recalls_total
     cellseg_metric["F1_Score"] = f1_scores_total
+    cellseg_metric["AP_Score"] = ap_scores_total
 
     cellseg_metric = pd.DataFrame(cellseg_metric)
     print("mean F1 Score:", np.mean(cellseg_metric["F1_Score"]))
+    print("mean AP Score:", np.mean(cellseg_metric["AP_Score"]))
+
 
     # Save results
     if args.save_path is not None:
