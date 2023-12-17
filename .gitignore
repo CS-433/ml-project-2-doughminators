@@ -1,6 +1,4 @@
-config/
 *.log
-*.ipynb
 *.ipynb_checkpoints/
 __pycache__/
 results/
@@ -12,7 +10,6 @@ submissions/
 *.npy
 *.pth
 *.sh
-*.json
 *.out
 *.zip
 *.tif
