@@ -9,6 +9,8 @@ from tqdm import tqdm
 from train_tools.measures import evaluate_f1_score_cellseg
 from train_tools.utils import ConfLoader
 
+import warnings
+
 
 def main():
     ### Directory path arguments ###
@@ -41,7 +43,11 @@ def main():
         ), f"The suffix of label name {name} should be _label.tiff"
 
         # Load the images
-        gt = tif.imread(os.path.join(gt_path, name))
+        try:
+            gt = tif.imread(os.path.join(gt_path, name))
+        except FileNotFoundError:
+            warnings.warn(f"Warning: file {name} missing")
+            continue
         pred = tif.imread(os.path.join(pred_path, name))
 
         # Evaluate metrics

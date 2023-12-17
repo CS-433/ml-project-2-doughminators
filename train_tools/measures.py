@@ -20,14 +20,14 @@ def evaluate_f1_score_cellseg(masks_true, masks_pred, threshold=0.5):
     """
 
     if np.prod(masks_true.shape) < (5000 * 5000):
-        masks_true = _remove_boundary_cells(masks_true.astype(np.int32))
+        masks_true = _remove_boundary_cells(masks_true.astype(np.int32).squeeze())
         masks_pred = _remove_boundary_cells(masks_pred.astype(np.int32))
 
         tp, fp, fn = get_confusion(masks_true, masks_pred, threshold)
 
     # Compute by Patch-based way for large images
     else:
-        H, W = masks_true.shape
+        H, W = masks_true.squeeze().shape
         roi_size = 2000
 
         # Get patch grid by roi_size
@@ -76,7 +76,10 @@ def evaluate_f1_score_cellseg(masks_true, masks_pred, threshold=0.5):
     # Calculate f1 score
     precision, recall, f1_score = evaluate_f1_score(tp, fp, fn)
 
-    ap_score = tp / (tp + fn + fp)
+    if tp == 0:
+        ap_score = 0
+    else:
+        ap_score = tp / (tp + fn + fp)
 
     return precision, recall, f1_score, ap_score
 
