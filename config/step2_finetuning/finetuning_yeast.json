@@ -22,20 +22,20 @@
     },
     "train_setups":{
         "model":{
-            "name": "mediar-yeast",
+            "name": "mediar-former",
             "params": {},
             "pretrained":{
                 "enabled": true,
-                "weights": "./weights/phase1.pth",
+                "weights": "./weights/pretrained/phase1.pth",
                 "strict": false
             }
         },
         "trainer": {
             "name": "mediar",
             "params": {            
-                "num_epochs": 200,
+                "num_epochs": 2,
                 "valid_frequency": 1,
-                "device": "cuda:0",
+                "device": "cpu",
                 "amp": true,
                 "algo_params": {"with_public": false}
             }
@@ -55,12 +55,12 @@
         "input_path":"./Datasets",
         "output_path": "./results/",
         "make_submission": true,
-        "exp_name": "mediar_from_phase1",
+        "exp_name": "mediar_from_phase1_on_YeaZ",
         "algo_params": {"use_tta": false}
     },
     "wandb_setups":{
         "project": "CellSeg",
         "group": "Fine-tuning",
-        "name": "from_phase1"
+        "name": "from_phase1_on_YeaZ"
     }
 }
