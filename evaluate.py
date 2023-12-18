@@ -68,8 +68,8 @@ def main():
     cellseg_metric["AP_Score"] = ap_scores_total
 
     cellseg_metric = pd.DataFrame(cellseg_metric)
-    print("mean F1 Score:", np.mean(cellseg_metric["F1_Score"]))
-    print("mean AP Score:", np.mean(cellseg_metric["AP_Score"]))
+    print("mean F1 Score:", np.mean(cellseg_metric["F1_Score"]), "+/-", np.std(cellseg_metric["F1_Score"])/len(cellseg_metric["F1_Score"]))
+    print("mean AP Score:", np.mean(cellseg_metric["AP_Score"]), "+/-", np.std(cellseg_metric["AP_Score"])/len(cellseg_metric["AP_Score"]))
 
 
     # Save results
