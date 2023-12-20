@@ -3,8 +3,23 @@
 
 ## This repo is essentially a copy of [MEDIAR](https://github.com/Lee-Gihun/MEDIAR/tree/main).
 
+## Experiments
 Our experiments can be found in the notebook ```MEDIAR Experiments.ipynb```. For reproducibility, or to use the fine-tuned weights resulting from the experiments, please see the last section "Reproducibility of best results on a test set" in the notebook. 
 
+## Model checkpoints
 The fine-tuned weights are downloadable from [google drive]().
 
+## What can be found in this repository?
 In this repository, we also include some configurations files in the ```config``` folder. The ```image_processing.ipynb``` notebook contains the pre-processing methods for the YeaZ dataset. Finally, the ```train_tools/data_utils/utils.py``` file was modified to obtain correct image-label mapping for the YeaZ data; the original file can be found in the [original MEDIAR repo](https://github.com/Lee-Gihun/MEDIAR/tree/main).
+
+## Reproducibility
+All requirements are the same as in the original publication. However, we train our model with a NVIDIA A100-SXM4-40GB GPU which requires an extra installation (see below).
+
+```
+pip install -r requirements.txt
+pip install segmentation-models-pytorch==0.3.1
+pip install wandb
+# Run the next line if training on google colab A100 GPUs
+pip install torch==1.11.0+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
+
+
