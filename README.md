@@ -4,7 +4,7 @@
 ## This repo is essentially a copy of [MEDIAR](https://github.com/Lee-Gihun/MEDIAR/tree/main).
 
 ## Experiments
-Our experiments can be found in the notebook ```MEDIAR Experiments.ipynb```. For reproducibility, or to use the fine-tuned weights resulting from the experiments, please see the last section "Reproducibility of best results on a test set" in the notebook. 
+Our experiments can be found in the notebook ```MEDIAR Experiments.ipynb```. For reproducibility, or to use the fine-tuned weights resulting from the experiments, please see the last section "Reproducibility of best results on a test set" in the notebook. A quick demonstration of the (fine-tuned) model is shown in ```Fine_tuned_MEDIAR_Tutorial.ipynb```.
 
 ## Model checkpoints
 The fine-tuned weights are downloadable from [google drive]().
