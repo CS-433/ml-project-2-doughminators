@@ -4,7 +4,7 @@
             "root": "./",
             "mapping_file": "./train_tools/data_utils/mapping_labeled.json",
             "mapping_file_tuning": "./train_tools/data_utils/mapping_labeled.json",
-            "amplified": true,
+            "amplified": false,
             "batch_size": 8, 
             "valid_portion": 0.2
         },
@@ -26,16 +26,16 @@
             "params": {},
             "pretrained":{
                 "enabled": true,
-                "weights": "./weights/pretrained/phase1.pth",
+                "weights": "./weights/ft_from_phase2_on_YeaZ_40_epochs.pth",
                 "strict": false
             }
         },
         "trainer": {
             "name": "mediar",
             "params": {            
-                "num_epochs": 2,
+                "num_epochs": 40,
                 "valid_frequency": 1,
-                "device": "cpu",
+                "device": "cuda:0",
                 "amp": true,
                 "algo_params": {"with_public": false}
             }
@@ -52,15 +52,15 @@
         "seed": 19940817
     },
     "pred_setups":{
-        "input_path":"./Datasets",
+        "input_path":"./Datasets/test/images",
         "output_path": "./results/",
         "make_submission": true,
-        "exp_name": "mediar_from_phase1_on_YeaZ",
-        "algo_params": {"use_tta": false}
+        "exp_name": "mediar_ft_challenge_from_phase2_on_YeaZ_80_epochs",
+        "algo_params": {"use_tta": true}
     },
     "wandb_setups":{
         "project": "CellSeg",
         "group": "Fine-tuning",
-        "name": "from_phase1_on_YeaZ"
+        "name": "mediar_ft_challenge_from_phase2_on_YeaZ_80_epochs"
     }
 }

@@ -13,6 +13,7 @@ def split_train_valid(data_dicts, valid_portion=0.1):
 
         # Obtain & shuffle data indices
         num_data_dicts = len(data_dicts)
+        print("num_data_dicts: ", num_data_dicts)
         indices = np.arange(num_data_dicts)
         np.random.shuffle(indices)
 
@@ -24,6 +25,7 @@ def split_train_valid(data_dicts, valid_portion=0.1):
         # Assign data dicts by split indices
         train_dicts = [data_dicts[idx] for idx in train_indices]
         valid_dicts = [data_dicts[idx] for idx in valid_indices]
+        print(valid_dicts)
 
     print(
         "\n(DataLoaded) Training data size: %d, Validation data size: %d\n"
