@@ -13,7 +13,7 @@ The fine-tuned weights are downloadable from [google drive](https://drive.google
 In this repository, we also include some configurations files in the ```config``` folder. The ```image_processing.ipynb``` notebook contains the pre-processing methods for the YeaZ dataset. Finally, the ```train_tools/data_utils/utils.py``` file was modified to obtain correct image-label mapping for the YeaZ data; the original file can be found in the [original MEDIAR repo](https://github.com/Lee-Gihun/MEDIAR/tree/main).
 
 ## Reproducibility
-All requirements are the same as in the original publication. However, we train our model with a NVIDIA A100-SXM4-40GB GPU which requires an extra installation (see below).
+All requirements are the same as in the original publication (see ```requirements.txt```). However, we train our model with a NVIDIA A100-SXM4-40GB GPU which requires an extra installation (see below).
 
 ```
 pip install -r requirements.txt
